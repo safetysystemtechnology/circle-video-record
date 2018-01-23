@@ -1,0 +1,1 @@
+include ':app', ':circle-video-record'

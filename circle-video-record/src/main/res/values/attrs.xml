@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleVideoRecord">
+        <attr name="play_button_image" format="reference"/>
+        <attr name="close_button_image" format="reference"/>
+
+        <attr name="circle_width" format="dimension"/>
+        <attr name="circle_height" format="dimension"/>
+
+        <attr name="max_time_message" format="string"/>
+
+    </declare-styleable>
+</resources>

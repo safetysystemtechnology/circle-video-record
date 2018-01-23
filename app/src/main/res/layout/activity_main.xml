@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_layout"
+    tools:context="br.com.netodevel.demo.MainActivity">
+
+    <br.com.netodevel.circle_video_record.CircleVideoRecord
+        android:id="@+id/circle_video_record"
+        android:layout_centerInParent="true"
+        app:circle_width="280dp"
+        app:circle_height="280dp"
+        app:play_button_image="@drawable/ic_play_circle"
+        app:close_button_image="@drawable/ic_stop"
+        app:max_time_message="Max time!!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </br.com.netodevel.circle_video_record.CircleVideoRecord>
+
+    <Button
+        android:id="@+id/button_record"
+        android:text="Gravar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

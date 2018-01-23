@@ -1,2 +1,2 @@
-# circle-video-record
-Simple component to record video on android
+# video-record-button
+Simple video recorder component for android
