@@ -7,13 +7,13 @@ Simple video recorder component for android
 </p>
 
 ## Install
-Add the dependecy
+Add the dependecy in `build.gradle(module: app)`
 
 ```gradle
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
+repositories {
+    mavenCentral()
+    maven {
+        url  "https://safety.bintray.com/maven"
     }
 }
 
