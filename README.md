@@ -18,7 +18,7 @@ allprojects {
 }
 
 dependencies {
-  compile 'com.github.safetysystemtechnology:circle-video-record:v1.0'
+  compile 'br.com.netodevel:circle-video-record:1.0'
 }
 
 ```
