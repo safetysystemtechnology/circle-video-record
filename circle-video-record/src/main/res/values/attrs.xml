@@ -10,4 +10,9 @@
         <attr name="max_time_message" format="string"/>
 
     </declare-styleable>
+
+    <declare-styleable name="CameraTouchButton">
+        <attr name="camera_circle_width" format="dimension"/>
+        <attr name="camera_circle_height" format="dimension"/>
+    </declare-styleable>
 </resources>

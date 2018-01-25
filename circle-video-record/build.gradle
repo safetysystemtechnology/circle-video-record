@@ -1,9 +1,12 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+version = '1.0'
+group = 'br.com.netodevel'
 
 android {
     compileSdkVersion 26
-
-
 
     defaultConfig {
         minSdkVersion 15
@@ -24,6 +27,95 @@ android {
 
 }
 
+if (project.hasProperty("android")) { // Android libraries
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.srcDirs
+    }
+
+    task javadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+} else { // Java libraries
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name 'CircleVideoRecord'
+            description 'Simple component to record video on android Edit'
+            url 'https://github.com/safetysystemtechnology/circle-video-record'
+            inceptionYear '2018'
+
+            packaging 'aar'
+            groupId 'br.com.netodevel'
+            artifactId 'circle-video-record'
+            version '1.0'
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                connection 'https://github.com/safetysystemtechnology/circle-video-record.git'
+                url 'https://github.com/safetysystemtechnology/circle-video-record'
+
+            }
+            developers {
+                developer {
+                    name 'NetoDevel'
+                }
+            }
+        }
+    }
+}
+
+// Configure gradle-bintray-plugin (for publishing releases)
+bintray {
+    configurations = ['archives']
+
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+
+    publish = true
+
+    pkg {
+        repo = 'maven'
+        name = 'circle-video-record'
+        userOrg = 'safety'
+        licenses = ['Apache-2.0']
+        labels = ['video', 'camera-kit', 'android', 'record-video']
+        websiteUrl = 'https://github.com/safetysystemtechnology/circle-video-record'
+        issueTrackerUrl = 'https://github.com/safetysystemtechnology/circle-video-record/issues'
+        vcsUrl = 'https://github.com/safetysystemtechnology/circle-video-record.git'
+        publicDownloadNumbers = true
+    }
+
+}
+
+//if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
+//    bintray.user = project.bintrayUser
+//    bintray.key = project.bintrayKey
+//}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -33,4 +125,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     compile 'com.wonderkiln:camerakit:0.13.1'
+}
+
+repositories {
+    mavenCentral()
 }

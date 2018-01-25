@@ -59,6 +59,7 @@ public class CircleVideoRecord extends RelativeLayout {
     private Drawable drawablePlayButton;
     private Drawable drawableCloseButton;
     private String maxTimeMessage = "";
+    private RelativeLayout mRootLayout;
 
     interface VideoListener {
         void onVideoTaken(File video);
@@ -87,7 +88,7 @@ public class CircleVideoRecord extends RelativeLayout {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public void setup(RelativeLayout view) {
+    public void setup(RelativeLayout view, CameraView cameraView) {
         if (progressFrameLayout == null) {
             progressFrameLayout = new ProgressFrameLayout(mContext);
             progressFrameLayout.setId(ID_PROGRESS_FRAME_LAYOUT);
@@ -100,14 +101,9 @@ public class CircleVideoRecord extends RelativeLayout {
             /**
              * Camera
              */
-            mCameraView = new CameraView(mContext);
-            LayoutParams cameraParams = new LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
-            );
-            cameraParams.addRule(CENTER_IN_PARENT, TRUE);
+            mCameraView = cameraView;
+            //addCameraView();
 
-            progressFrameLayout.addView(mCameraView, cameraParams);
             /**
              * Add Progress Frame Layout to root
              */
@@ -187,11 +183,27 @@ public class CircleVideoRecord extends RelativeLayout {
         }
     }
 
+    private void addCameraView() {
+        LayoutParams cameraParams = new LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        );
+
+        cameraParams.addRule(CENTER_IN_PARENT, TRUE);
+
+        progressFrameLayout.addView(mCameraView, cameraParams);
+    }
+
     public void show() {
         Animation animFadeIn = AnimationUtils.loadAnimation(this.mContext, R.anim.to_up);
         animFadeIn.reset();
         this.progressFrameLayout.clearAnimation();
         this.progressFrameLayout.startAnimation(animFadeIn);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            cropViews();
+        }
+        addCameraView();
 
         this.progressFrameLayout.setVisibility(VISIBLE);
         this.mPlayButton.setVisibility(VISIBLE);
@@ -199,9 +211,38 @@ public class CircleVideoRecord extends RelativeLayout {
     }
 
     public void hide() {
+        this.progressFrameLayout.removeView(mCameraView);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            this.mCameraView.setOutlineProvider(null);
+        }
+
         this.progressFrameLayout.setVisibility(INVISIBLE);
         this.mPlayButton.setVisibility(INVISIBLE);
         this.mCloseButton.setVisibility(INVISIBLE);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void cropViews() {
+        ViewOutlineProvider vop = new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setOval(5, 5, view.getWidth() - 5, view.getHeight() - 5);
+            }
+        };
+
+        this.progressFrameLayout.setOutlineProvider(vop);
+        this.progressFrameLayout.setClipToOutline(true);
+
+        ViewOutlineProvider vop2 = new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setOval(10, 10, progressFrameLayout.getWidth() - 10, progressFrameLayout.getHeight() - 10);
+            }
+        };
+
+        mCameraView.setOutlineProvider(vop2);
+        mCameraView.setClipToOutline(true);
     }
 
     public void setVideoListener(VideoListener videoListener) {
@@ -210,9 +251,7 @@ public class CircleVideoRecord extends RelativeLayout {
 
     public void closeVideoRecord() {
         this.progressFrameLayout.restartAnimation();
-        this.mPlayButton.setVisibility(INVISIBLE);
-        this.mCloseButton.setVisibility(INVISIBLE);
-        this.progressFrameLayout.setVisibility(INVISIBLE);
+        hide();
 
         if (recording) {
             mCameraView.stopVideo();

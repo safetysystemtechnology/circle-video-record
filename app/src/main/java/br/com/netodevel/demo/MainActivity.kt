@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import br.com.netodevel.circle_video_record.BuilderCameraView
+import com.wonderkiln.camerakit.CameraView
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -12,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : AppCompatActivity() {
 
+    lateinit var cameraView: CameraView
     var mStatus: Boolean? = false
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -19,7 +22,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        circle_video_record.setup(root_layout)
+        /**
+         * Build CameraView
+         */
+        cameraView = BuilderCameraView().build(this)
+
+        /**
+         * Setup Circle Video Record
+         */
+        circle_video_record.setup(root_layout, cameraView)
+
         button_record.setOnClickListener {
             mStatus = !mStatus!!;
 
@@ -29,6 +41,9 @@ class MainActivity : AppCompatActivity() {
                 circle_video_record.hide()
             }
 
+            /**
+             * Listener callback video file
+             */
             circle_video_record.setVideoListener {
                 Log.d("video_path", it.absolutePath)
             }
@@ -37,11 +52,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        circle_video_record.camera.start()
+        cameraView.start()
     }
 
     override fun onPause() {
-        circle_video_record.camera.stop()
+        cameraView.stop()
         super.onPause()
     }
 

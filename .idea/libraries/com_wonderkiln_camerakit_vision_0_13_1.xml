@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="com.wonderkiln:camerakit-vision-0.13.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/camerakit-vision-0.13.1.aar/bc733509053daec61eaa4938b9a36113/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/camerakit-vision-0.13.1.aar/bc733509053daec61eaa4938b9a36113/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
