@@ -44,6 +44,7 @@ dependencies {
 ```
 ### Kotlin
 ```kotlin
+lateinit var cameraView: CameraView
 var mStatus: Boolean? = false
 
 @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -51,7 +52,16 @@ override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    circle_video_record.setup(root_layout)
+    /**
+     * Build CameraView
+     */
+    cameraView = BuilderCameraView().build(this)
+
+    /**
+     * Setup Circle Video Record
+     */
+    circle_video_record.setup(root_layout, cameraView)
+
     button_record.setOnClickListener {
         mStatus = !mStatus!!;
 
@@ -61,6 +71,9 @@ override fun onCreate(savedInstanceState: Bundle?) {
             circle_video_record.hide()
         }
 
+        /**
+         * Listener callback video file
+         */
         circle_video_record.setVideoListener {
             Log.d("video_path", it.absolutePath)
         }
@@ -69,11 +82,11 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 override fun onResume() {
     super.onResume()
-    circle_video_record.camera.start()
+    cameraView.start()
 }
 
 override fun onPause() {
-    circle_video_record.camera.stop()
+    cameraView.stop()
     super.onPause()
 }
 ```
