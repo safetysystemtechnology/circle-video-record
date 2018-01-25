@@ -1,6 +1,8 @@
 # Circle Video Record
 Simple video recorder component for android
 
+This library uses [CameraKit-Android](https://github.com/CameraKit/camerakit-android)
+
 ## Demo
 <p align="center">
   <img src="art/demo.gif" height="500" alt="video record android" />
