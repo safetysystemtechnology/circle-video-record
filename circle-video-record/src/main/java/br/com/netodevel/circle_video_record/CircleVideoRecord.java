@@ -3,7 +3,6 @@ package br.com.netodevel.circle_video_record;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.Outline;
 import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
@@ -11,7 +10,6 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
@@ -25,8 +23,6 @@ import android.widget.Toast;
 import com.wonderkiln.camerakit.CameraKitEventCallback;
 import com.wonderkiln.camerakit.CameraKitVideo;
 import com.wonderkiln.camerakit.CameraView;
-
-import java.io.File;
 
 /**
  * @author NetoDevel
@@ -60,10 +56,6 @@ public class CircleVideoRecord extends RelativeLayout {
     private Drawable drawableCloseButton;
     private String maxTimeMessage = "";
     private RelativeLayout mRootLayout;
-
-    interface VideoListener {
-        void onVideoTaken(File video);
-    }
 
     public CircleVideoRecord(Context context) {
         super(context);
