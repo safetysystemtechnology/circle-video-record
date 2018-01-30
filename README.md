@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-  compile 'br.com.netodevel:circle-video-record:2.0'
+  compile 'br.com.netodevel:circle-video-record:2.3'
 }
 
 ```
