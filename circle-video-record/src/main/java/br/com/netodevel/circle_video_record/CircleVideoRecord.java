@@ -106,10 +106,8 @@ public class CircleVideoRecord extends RelativeLayout {
              */
             this.mCloseButton = new ImageButton(mContext);
             this.mCloseButton.setVisibility(INVISIBLE);
-            //this.mCloseButton.setAlpha(0.5f);
             this.mCloseButton.setImageDrawable(drawableCloseButton != null ? drawableCloseButton : ContextCompat.getDrawable(mContext, R.drawable.ic_close));
-            //this.mCloseButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_circle));
-            //this.mCloseButton.setColorFilter(Color.WHITE);
+            this.mCloseButton.setBackground(ContextCompat.getDrawable(mContext, R.color.transparent));
 
             this.mCloseButton.setOnClickListener(new OnClickListener() {
                 @Override
@@ -131,9 +129,8 @@ public class CircleVideoRecord extends RelativeLayout {
 
             this.mPlayButton = new ImageButton(mContext);
             this.mPlayButton.setVisibility(INVISIBLE);
-            //this.mPlayButton.setAlpha(0.5f);
             this.mPlayButton.setImageDrawable(drawablePlayButton != null ? drawablePlayButton : ContextCompat.getDrawable(mContext, R.drawable.ic_play));
-            //this.mPlayButton.setColorFilter(Color.WHITE);
+            this.mPlayButton.setBackground(ContextCompat.getDrawable(mContext, R.color.transparent));
 
             this.mPlayButton.setOnClickListener(new OnClickListener() {
                 @Override
