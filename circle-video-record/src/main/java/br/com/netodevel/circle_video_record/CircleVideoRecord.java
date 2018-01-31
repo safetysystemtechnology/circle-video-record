@@ -55,6 +55,8 @@ public class CircleVideoRecord extends RelativeLayout {
     private Drawable drawablePlayButton;
     private Drawable drawableCloseButton;
     private String maxTimeMessage = "";
+    private Integer recordTime;
+
     private RelativeLayout mRootLayout;
 
     public CircleVideoRecord(Context context) {
@@ -86,6 +88,7 @@ public class CircleVideoRecord extends RelativeLayout {
             progressFrameLayout.setId(ID_PROGRESS_FRAME_LAYOUT);
             progressFrameLayout.setVisibility(INVISIBLE);
             progressFrameLayout.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_circle));
+            progressFrameLayout.setRecordTime(recordTime != 0 ? recordTime : 10000);
 
             LayoutParams layoutParams = new LayoutParams(circleWidth != 0 ? circleWidth : 290, circleHeight != 0 ? circleHeight : 290);
             layoutParams.addRule(CENTER_IN_PARENT, TRUE);
@@ -148,6 +151,7 @@ public class CircleVideoRecord extends RelativeLayout {
                     });
 
                     recording = true;
+
                     progressFrameLayout.start();
                     progressFrameLayout.requestLayout();
                 }
@@ -209,6 +213,11 @@ public class CircleVideoRecord extends RelativeLayout {
         this.progressFrameLayout.setVisibility(INVISIBLE);
         this.mPlayButton.setVisibility(INVISIBLE);
         this.mCloseButton.setVisibility(INVISIBLE);
+    }
+
+    public void setRecordTime(Integer milliSeconds) {
+        recordTime = milliSeconds;
+        progressFrameLayout.setRecordTime(recordTime);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -294,6 +303,7 @@ public class CircleVideoRecord extends RelativeLayout {
             circleHeight = (int) typedArray.getDimension(R.styleable.CircleVideoRecord_circle_height, ViewGroup.LayoutParams.WRAP_CONTENT);
 
             maxTimeMessage = (String) typedArray.getString(R.styleable.CircleVideoRecord_max_time_message);
+            recordTime = (int) typedArray.getInt(R.styleable.CircleVideoRecord_record_time, 0);
         }
     }
 

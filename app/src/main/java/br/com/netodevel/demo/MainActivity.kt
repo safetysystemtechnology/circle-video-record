@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
          */
         circle_video_record.setup(root_layout, cameraView)
 
+        //circle_video_record.setRecordTime(2000)
+
         button_record.setOnClickListener {
             mStatus = !mStatus!!;
 

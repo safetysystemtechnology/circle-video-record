@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-  compile 'br.com.netodevel:circle-video-record:2.0'
+  compile 'br.com.netodevel:circle-video-record:2.4'
 }
 
 ```
@@ -37,6 +37,7 @@ dependencies {
         android:layout_centerInParent="true"
         app:circle_width="280dp"
         app:circle_height="280dp"
+        app:record_time="10000"
         app:play_button_image="@drawable/ic_play_circle"
         app:close_button_image="@drawable/ic_stop"
         app:max_time_message="Max time!!">
@@ -61,6 +62,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
      * Setup Circle Video Record
      */
     circle_video_record.setup(root_layout, cameraView)
+    //circle_video_record.setRecordTime(2000)
 
     button_record.setOnClickListener {
         mStatus = !mStatus!!;

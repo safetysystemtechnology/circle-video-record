@@ -20,7 +20,6 @@ public class CircularAnimatedDrawable extends Drawable implements Animatable {
 
     private ValueAnimator mValueAnimatorSweep;
     private static final Interpolator SWEEP_INTERPOLATOR = new DecelerateInterpolator();
-    private static final int SWEEP_ANIMATOR_DURATION = 10000;
     private static final Float MIN_SWEEP_ANGLE = 30f;
 
     private final RectF fBounds = new RectF();
@@ -36,6 +35,7 @@ public class CircularAnimatedDrawable extends Drawable implements Animatable {
     private boolean mRunning;
 
     private ProgressListener progressListener;
+    private int sweepAnimatorDuration;
 
     public CircularAnimatedDrawable(View view, float borderWidth, int arcColor) {
         mAnimatedView = view;
@@ -49,6 +49,12 @@ public class CircularAnimatedDrawable extends Drawable implements Animatable {
         mPaint.setColor(arcColor);
 
         setupAnimations();
+    }
+
+    public void setSweepAnimatorDuration(int milliSeconds){
+        this.sweepAnimatorDuration = milliSeconds;
+
+        mValueAnimatorSweep.setDuration(sweepAnimatorDuration != 0 ? sweepAnimatorDuration : 10000);
     }
 
     public void setOnProgressListener(ProgressListener progressListener) {
@@ -145,7 +151,7 @@ public class CircularAnimatedDrawable extends Drawable implements Animatable {
     private void setupAnimations() {
         mValueAnimatorSweep = ValueAnimator.ofFloat(mCurrentSweepAngle, 360f);
         mValueAnimatorSweep.setInterpolator(SWEEP_INTERPOLATOR);
-        mValueAnimatorSweep.setDuration(SWEEP_ANIMATOR_DURATION);
+        mValueAnimatorSweep.setDuration(sweepAnimatorDuration != 0 ? sweepAnimatorDuration : 10000);
 
         mValueAnimatorSweep.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override

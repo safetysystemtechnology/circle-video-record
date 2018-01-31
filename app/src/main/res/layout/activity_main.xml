@@ -15,6 +15,7 @@
         app:play_button_image="@drawable/ic_play_circle"
         app:close_button_image="@drawable/ic_stop"
         app:max_time_message="Max time!!"
+        app:record_time="10000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </br.com.netodevel.circle_video_record.CircleVideoRecord>

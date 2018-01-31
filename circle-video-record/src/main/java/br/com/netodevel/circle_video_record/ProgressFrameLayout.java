@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.annotation.StyleRes;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 /**
@@ -20,6 +21,7 @@ public class ProgressFrameLayout extends FrameLayout {
     private CircularAnimatedDrawable mAnimatedDrawable;
     private State mState;
     private FinishVideoListener finishVideoListener;
+    private int recordTime;
 
     public ProgressFrameLayout(@NonNull Context context) {
         super(context);
@@ -62,6 +64,10 @@ public class ProgressFrameLayout extends FrameLayout {
         this.mState = State.STOP;
     }
 
+    public void setRecordTime(Integer milliSeconds) {
+        this.recordTime = milliSeconds;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onDraw(Canvas canvas) {
@@ -69,6 +75,7 @@ public class ProgressFrameLayout extends FrameLayout {
         if (mState == State.PROGRESS) {
             if (mAnimatedDrawable == null || !mAnimatedDrawable.isRunning()) {
                 mAnimatedDrawable = new CircularAnimatedDrawable(this, 5, Color.WHITE);
+                mAnimatedDrawable.setSweepAnimatorDuration(recordTime);
 
                 mAnimatedDrawable.setOnProgressListener(new ProgressListener() {
                     @Override
