@@ -13,8 +13,8 @@ android:
   - android-27
   - extra-android-m2repository
 
-#before_install: chmod +x gradle/publish.sh
-script: ./gradlew -PbintrayUser="${BINTRAY_USER}" -PbintrayKey="${BINTRAY_KEY}" build bintrayUpload
+before_install: chmod +x publish.sh
+script: publish.sh
 env:
   global:
   - BINTRAY_KEY: 6a5c27957e3b524d1b1fb1e69a73830e66c6b240
