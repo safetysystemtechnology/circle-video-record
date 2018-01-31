@@ -14,4 +14,8 @@ android:
   - extra-android-m2repository
 
 #before_install: chmod +x gradle/publish.sh
-#script: publish.sh
+script: ./gradlew -PbintrayUser="${BINTRAY_USER}" -PbintrayKey="${BINTRAY_KEY}" build bintrayUpload
+env:
+  global:
+  - BINTRAY_KEY: 6a5c27957e3b524d1b1fb1e69a73830e66c6b240
+  - BINTRAY_USER: netodevel
