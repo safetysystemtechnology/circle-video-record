@@ -5,6 +5,8 @@ addons:
   apt:
     packages:
     - lynx
+  sonarcloud:
+    organization: "netodevel-github" 
 android:
   components:
   - platform-tools
@@ -20,5 +22,7 @@ licenses:
     - 'google-gdk-license-.+'
 
 before_install: chmod +x publish.sh
-script: sh publish.sh
+script: 
+    - sh publish.sh
+    - sonar-scanner
 
