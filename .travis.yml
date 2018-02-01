@@ -21,7 +21,4 @@ licenses:
 
 before_install: chmod +x publish.sh
 script: sh publish.sh
-env:
-  global:
-  - BINTRAY_KEY: 6a5c27957e3b524d1b1fb1e69a73830e66c6b240
-  - BINTRAY_USER: netodevel
+
