@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
-version = '2.5'
+version = gitVersionName
 group = 'br.com.netodevel'
 
 android {
@@ -11,8 +11,9 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 2
-        versionName "2.5"
+
+        versionCode gitVersionCode
+        versionName gitVersionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -65,7 +66,7 @@ install {
             packaging 'aar'
             groupId 'br.com.netodevel'
             artifactId 'circle-video-record'
-            version '2.5'
+            version gitVersionName
 
             licenses {
                 license {
