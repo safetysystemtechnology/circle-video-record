@@ -7,6 +7,10 @@ addons:
     - lynx
   sonarcloud:
     organization: "netodevel-github" 
+  addons:
+    code_climate:
+      repo_token: TY6JpsNzNgZeLPcH3YC/COldjJ0DkI55J+MwlnIlUXvoQMH1pbFToMtRWmW0L4tqaN4hUMKp0PqFXzaBOTewA1psj4qgLotypzDA5EuJ/lwtrWJ1of9EdAnBkotxJhGX/o3N5ysmApo7aDPJkdID5SZwXhypPDlRqMNVVn2WlxUTJ3Pn92kWdASmEUz3BnVQxm71+h9LLR1mzJB2uXRcHZJHxnmEWLGJfbjkWVMZjd+ujc3HqYdW+h3lWf31dQAEAkkVKG9DSyaiF4sfeUwweqlUfVuKpjTUEGoNsSGUTlexFV4cjYjbJ0yvKpsMiCjnJxoFlBXz5+KNgulos71RD85aXupI1rrKnKKRogmV27ZweU1cI9Zb102Zlfi+9GHXiGO/3aTPWS36h28OEH3bUAcC4uz5Ls3mcZGeKs9Lpyj/5K5xFIi4U19tle9jDliF07MP5xmIp/jfrXTE1uuP9wWzElbE4p5MNyUT2ikiI8KI2JZMaoRvcSnLXP/hQntFnZGr+99KO3MAjaBd10fdcpshmhLrqp7RVHXIHq+CCDGyVpLNRWAWhIPn3+mFvrmK4xvaOWpizgPsEBi9wc7McapMz0HJATCSNUM7ZdLnOEJrtBZZonMPqm1xI4Oh038uOyyGBDI0Xjy96NfmqCuDa7CdKyH+0luDbPp268Dw6qU=
+    
 android:
   components:
   - platform-tools
