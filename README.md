@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/safetysystemtechnology/circle-video-record.svg?branch=master)](https://travis-ci.org/safetysystemtechnology/circle-video-record)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/b64c47e3f5eb22bd2b58/maintainability)](https://codeclimate.com/repos/5a74a424dd702c02be001fde/maintainability)
+
 # Circle Video Record
 Simple video recorder component for android
 
