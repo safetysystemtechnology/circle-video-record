@@ -101,7 +101,7 @@ bintray {
     pkg {
         repo = 'maven'
         name = 'circle-video-record'
-        userOrg = 'netodevel'
+        userOrg = 'safetydev'
         licenses = ['Apache-2.0']
         labels = ['video', 'camera-kit', 'android', 'record-video']
         websiteUrl = 'https://github.com/safetysystemtechnology/circle-video-record'
